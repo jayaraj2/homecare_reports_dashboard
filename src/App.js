@@ -88,14 +88,14 @@ function App() {
 
 
   const selectBranch = [
-    { id: -1, label: 'All', value: '' },
+    { id: null, label: 'All', value: null },
     { id: 1, label: 'Athulya Homecare Chennai', value: 'Athulya Homecare Chennai' },
     { id: 2, label: 'Athulya Homecare Bangalore', value: 'Athulya Homecare Bangalore' },
     { id: 3, label: 'Athulya Homecare Cochin', value: 'Athulya Homecare Cochin' },
     { id: 4, label: 'Athulya Homecare Hyderabad', value: 'Athulya Homecare Hyderabad' },
     { id: 5, label: 'Athulya Homecare Coimbatore', value: 'Athulya Homecare Coimbatore' },
-
   ];
+  
 
   //---------------------------------------------------------------- Master Services data Fetching----------------------------------------------------------------
 
@@ -359,7 +359,7 @@ function App() {
     console.log(to_Date);
     console.log(select_branch);
 
-    const branchIdParam = select_branch !== undefined ? select_branch : '';
+    const branchIdParam = select_branch !== null ? select_branch : '';
    setIsLoading(true);
     axios.post(`${URLDevelopment}/getcompletedschedules?from_date=${from_Date}&to_date=${to_Date}&branch_id=${branchIdParam}`)
       .then(response => {
@@ -408,7 +408,7 @@ function App() {
     console.log(to_Date);
     console.log(select_branch);
 
-    const branchIdParam = select_branch !== undefined ? select_branch : '';
+    const branchIdParam = select_branch !== null ? select_branch : '';
     setIsLoading(true);
     axios.post(`${URLDevelopment}/getpendingschedules?from_date=${from_Date}&to_date=${to_Date}&branch_id=${branchIdParam}`)
       .then(response => {
@@ -478,7 +478,7 @@ function App() {
 
     } else {
 
-      const branchIdParam = select_branch !== undefined ? select_branch : '';
+      const branchIdParam = select_branch !== null ? select_branch : '';
 
       console.log("Service Params:-" + formattedFrom_Date + " " + formattedTo_Date + " " + branchIdParam + " " + select_category);
       // Completed  and Pending Service Schedules
@@ -515,9 +515,8 @@ function App() {
         .then(response => {
           //setData(response.data);formattedTo_Date
           console.log("Category Service Schedules");
-          console.log(response.data.data);
           setservicecategory(response.data.data);
-          //console.log(servicecategory);
+          console.log("setservicecategory1",response.data.data);
         })
         .catch((error) => {
           console.error('Error fetching data: ', error);
@@ -542,7 +541,7 @@ function App() {
     //to_Date='2023-09-24';
     console.log(formattedFrom_Date, formattedTo_Date, select_branch);
 
-    const branchIdParam = select_branch !== undefined ? select_branch : '';
+    const branchIdParam = select_branch !== null ? select_branch : '';
     setIsLoading(true);
     axios.post(`${URLDevelopment}/getinvoices?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}`)
       .then(response => {
@@ -558,6 +557,7 @@ function App() {
       });
 
     console.log(formattedFrom_Date, formattedTo_Date, select_branch);
+    
     firstbar == false ?
 
       axios.post(`${URLDevelopment}/getserviceinvoice?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}`)
@@ -565,7 +565,7 @@ function App() {
           //setData(response.data);formattedTo_Date
           setservicecategory(response.data.data);
           //console.log(response.data.data);
-          console.log(response.data.data);
+          console.log('setservicecategory2',response.data.data);
         })
         .catch(error => {
           console.error('Error fetching data: ', error);
@@ -576,7 +576,7 @@ function App() {
         .then(response => {
           //setData(response.data);formattedTo_Date
           setservicecategory(response.data.data);
-          // console.log("Deepthi");
+          console.log("setservicecategory",response.data.data);
           console.log(servicecategory);
         })
         .catch((error) => {
@@ -601,7 +601,8 @@ function App() {
         //setData(response.data);
         setalldaydata(response.data.data);
         //console.log(response.data.data);
-        console.log(alldaydata);
+        console.log("all day data", alldaydata);
+        console.log("branchIdParam all day ", branchIdParam);
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
@@ -643,8 +644,10 @@ function App() {
 
      setIsLoading(true);
     axios.post(`${URLDevelopment}/getsummary?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}`)
+   
       .then(response => {
         //setData(response.data);
+         console.log("branch null",branchIdParam);
         var invoice_amount = response.data.data['Invoice_Sum'];
         var receipt_amount = response.data.data['Receipt_Sum'];
         var completedschedules_amount = response.data.data['Completed_Schedule_Sum'];
