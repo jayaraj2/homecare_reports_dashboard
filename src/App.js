@@ -95,7 +95,7 @@ function App() {
     { id: 4, label: 'Athulya Homecare Hyderabad', value: 'Athulya Homecare Hyderabad' },
     { id: 5, label: 'Athulya Homecare Coimbatore', value: 'Athulya Homecare Coimbatore' },
   ];
-  
+
 
   //---------------------------------------------------------------- Master Services data Fetching----------------------------------------------------------------
 
@@ -258,7 +258,7 @@ function App() {
     var to_Date = new Date(toDate);
     year = to_Date.getFullYear();
     month = String(to_Date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed, so add 1 and pad with zeros
-    day = String(to_Date.getDate()).padStart(2, "0");
+    day = String(to_Date.getDate()).padStart(2, "0")
 
     to_Date = `${year}-${month}-${day}`;
     var select_branch = branch.id;
@@ -266,7 +266,7 @@ function App() {
     console.log(from_Date);
     console.log(to_Date);
     console.log(select_branch);
-    setIsLoading(true); 
+    setIsLoading(true);
     axios.post(`${URLDevelopment}/getreceipts?from_date=${from_Date}&to_date=${to_Date}&branch_id=${select_branch}`)
       .then(response => {
         //setData(response.data);
@@ -311,7 +311,7 @@ function App() {
     console.log(from_Date);
     console.log(to_Date);
     console.log(select_branch);
-   setIsLoading(true);
+    setIsLoading(true);
     axios.post(`${URLDevelopment}/getpendingreceipts?from_date=${from_Date}&to_date=${to_Date}&branch_id=${select_branch}`)
       .then(response => {
         //setData(response.data);
@@ -360,7 +360,7 @@ function App() {
     console.log(select_branch);
 
     const branchIdParam = select_branch !== null ? select_branch : '';
-   setIsLoading(true);
+    setIsLoading(true);
     axios.post(`${URLDevelopment}/getcompletedschedules?from_date=${from_Date}&to_date=${to_Date}&branch_id=${branchIdParam}`)
       .then(response => {
         //setData(response.data);
@@ -516,12 +516,12 @@ function App() {
           //setData(response.data);formattedTo_Date
           console.log("Category Service Schedules");
           setservicecategory(response.data.data);
-          console.log("setservicecategory1",response.data.data);
+          console.log("setservicecategory1", response.data.data);
         })
         .catch((error) => {
           console.error('Error fetching data: ', error);
         })
-  setIsLoading(true)
+      setIsLoading(true)
       axios.post(`${URLDevelopment}/getschedulerevenue?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}&category_required=${select_category}`)
         .then(response => {
           //setData(response.data);
@@ -557,7 +557,7 @@ function App() {
       });
 
     console.log(formattedFrom_Date, formattedTo_Date, select_branch);
-    
+
     firstbar == false ?
 
       axios.post(`${URLDevelopment}/getserviceinvoice?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}`)
@@ -565,24 +565,24 @@ function App() {
           //setData(response.data);formattedTo_Date
           setservicecategory(response.data.data);
           //console.log(response.data.data);
-          console.log('setservicecategory2',response.data.data);
+          console.log('setservicecategory2', response.data.data);
         })
         .catch(error => {
           console.error('Error fetching data: ', error);
         })
       :
-  
+
       axios.post(`${URLDevelopment}/getschedulecategoryrevenue?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}&category_required=${select_category}`)
         .then(response => {
           //setData(response.data);formattedTo_Date
           setservicecategory(response.data.data);
-          console.log("setservicecategory",response.data.data);
+          console.log("setservicecategory", response.data.data);
           console.log(servicecategory);
         })
         .catch((error) => {
           console.error('Error fetching data: ', error);
         })
-   setIsLoading(true);
+    setIsLoading(true);
     axios.post(`${URLDevelopment}/getservicecategorybranch?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}&service_category=${select_category}`)
       .then(response => {
         setPiechartCategory(response.data.data);
@@ -595,7 +595,7 @@ function App() {
         setIsLoading(false);
       });
 
-     setIsLoading(true);
+    setIsLoading(true);
     axios.post(`${URLDevelopment}/getalldayinvoice?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}`)
       .then(response => {
         //setData(response.data);
@@ -642,12 +642,12 @@ function App() {
 
     console.log(formattedFrom_Date, formattedTo_Date, branchIdParam);
 
-     setIsLoading(true);
+    setIsLoading(true);
     axios.post(`${URLDevelopment}/getsummary?from_date=${formattedFrom_Date}&to_date=${formattedTo_Date}&branch_id=${branchIdParam}`)
-   
+
       .then(response => {
         //setData(response.data);
-         console.log("branch null",branchIdParam);
+        console.log("branch null", branchIdParam);
         var invoice_amount = response.data.data['Invoice_Sum'];
         var receipt_amount = response.data.data['Receipt_Sum'];
         var completedschedules_amount = response.data.data['Completed_Schedule_Sum'];
@@ -853,17 +853,10 @@ function App() {
         ...prevSplitup,
         [id]: result.success,
       }));
-
-      // Toggle the visibility for the specific invoice ID
-      setDetailsVisible((prevDetailsVisible) => ({
-        ...prevDetailsVisible,
-        [id]: !prevDetailsVisible[id],
-      }));
     } catch (error) {
       console.error("Error fetching details from the API:", error);
     }
   };
-
 
   //===================================================Cursor Style========================================================= 
 
@@ -951,8 +944,7 @@ function App() {
   const [currentPage4, setCurrentPage4] = useState(1); // pagination state
   const [rowsPerPage4, setRowsPerPage4] = useState(10); // row control state
   const [selectedRows4, setSelectedRows4] = useState([]);
-
- //-----Table1 Data---------------------------------------------------
+  //-----Table1 Data---------------------------------------------------
 
   const columns1 = [
     {
@@ -1029,10 +1021,10 @@ function App() {
       cell: (row) => (
         <span
           className={`${row.status === 'Pending'
-              ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'
-              : row.status === 'Paid'
-                ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'
-                : 'text-black' // Default color for other statuses
+            ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'
+            : row.status === 'Paid'
+              ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'
+              : 'text-black' // Default color for other statuses
             }`}
         >
           {row.status}
@@ -1062,9 +1054,9 @@ function App() {
     }
   }
 
-   // export button 1 handling
+  // export button 1 handling
 
-   const handleExportSelected1 = () => {
+  const handleExportSelected1 = () => {
     const selectedDataToExport1 = selectedRows1.map((row, index) => ({
       Sno: index + 1,
       Branch: row.branch_name,
@@ -1168,10 +1160,10 @@ function App() {
       cell: (row) => (
         <span
           className={`${row.status === 'Pending'
-              ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'
-              : row.status === 'Completed'
-                ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'
-                : 'text-black' // Default color for other statuses
+            ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'
+            : row.status === 'Completed'
+              ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'
+              : 'text-black' // Default color for other statuses
             }`}
         >
           {row.status}
@@ -1279,10 +1271,10 @@ function App() {
       cell: (row) => (
         <span
           className={`${row.status === 'Pending'
-              ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'
-              : row.status === 'Paid'
-                ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'
-                : 'text-black' // Default color for other statuses
+            ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'
+            : row.status === 'Paid'
+              ? 'px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'
+              : 'text-black' // Default color for other statuses
             }`}
         >
           {row.status}
@@ -1290,113 +1282,113 @@ function App() {
       ),
     },
   ];
- // export button 3 handling
+  // export button 3 handling
 
- const handleExportSelected3 = () => {
-  const selectedDataToExport3 = selectedRows3.map((row) => {
-    const assignedTasksArray = JSON.parse(row.assigned_tasks);
-    const assignedTasks = assignedTasksArray.map((task) => task.task).join(', ');
+  const handleExportSelected3 = () => {
+    const selectedDataToExport3 = selectedRows3.map((row) => {
+      const assignedTasksArray = JSON.parse(row.assigned_tasks);
+      const assignedTasks = assignedTasksArray.map((task) => task.task).join(', ');
 
-    return {
-      'Patient Name': row.first_name,
-      Branch: row.branch_name,
-      'Service Name': row.service_name,
-      'Schedule Date': row.schedule_date,
-      'Membership Type': row.membership_type,
-      'Assigned Tasks': assignedTasks,
-      Amount: new Intl.NumberFormat('en-IN', {
-        style: 'currency',
-        currency: 'INR',
-      }).format(row.amount).split('.')[0],
-      Status: row.status,
-    };
-  });
-
-  return (
-    <CSVLink
-      data={selectedDataToExport3}
-      filename="table_value.csv"
-      className="group [transform:translateZ(0)] px-6 py-3 rounded-lg overflow-hidden bg-gray-300 relative before:absolute before:bg-[#339966] before:top-1/2 before:left-1/2 before:h-2 before:w-9 before:-translate-y-1/2 before:-translate-x-1/2 before:rounded-sm  before:opacity-0 hover:before:scale-[6] hover:before:opacity-100 before:transition before:ease-in-out before:duration-500"
-    >
-      <span className="relative z-0 text-black transition duration-500 ease-in-out group-hover:text-gray-200">
-        Export Selected as CSV
-      </span>
-    </CSVLink>
-  );
-};
-
-const columns4 = [
-  {
-    name: 'Sno',
-    // selector: 'id', // Adjust this to your data structure
-    cell: (row) => {
-      const index = tabledata2.indexOf(row);
-      return (currentPage4 - 1) * rowsPerPage4 + index + 1;
-    },
-    sortable: true,
-    width: '70px',
-  },
-  {
-    name: 'Branch',
-    selector: 'branch_name',
-    sortable: true,
-    width: '230px',
-  },
-  {
-    name: 'Patient ID',
-    selector: 'patient_id',
-    sortable: true,
-    width: '170px',
-  },
-  {
-    name: 'Patient Name',
-    selector: 'patient_name',
-    sortable: true,
-    width: '270px',
-  },
-  {
-    name: 'Service Name',
-    selector: 'service_name',
-    sortable: true,
-    width: '500px',
-  },
-  {
-    name: 'Service Date',
-    selector: 'service_date',
-    sortable: true,
-    width: '150px',
-    cell: (row) => {
-      // Parse the date string into a Date object
-      const originalDate = new Date(row.service_date);
-      
-      // Format the date as "YYYY-MM-DD"
-      const formattedDate = originalDate.toISOString().split('T')[0];
-      
-      return formattedDate;
-    },
-  },
-  {
-    name: 'Invoice Number',
-    selector: 'invoice_no',
-    sortable: true,
-    width: '150px',
-  },
-  {
-    name: 'Amount',
-    selector: 'amount',
-    sortable: true,
-    cell: (row) => (
-      <span>
-        {new Intl.NumberFormat('en-IN', {
+      return {
+        'Patient Name': row.first_name,
+        Branch: row.branch_name,
+        'Service Name': row.service_name,
+        'Schedule Date': row.schedule_date,
+        'Membership Type': row.membership_type,
+        'Assigned Tasks': assignedTasks,
+        Amount: new Intl.NumberFormat('en-IN', {
           style: 'currency',
           currency: 'INR',
-        })
-          .format(row.amount)
-          .split('.')[0]}
-      </span>
-    ),
-  },
-];
+        }).format(row.amount).split('.')[0],
+        Status: row.status,
+      };
+    });
+
+    return (
+      <CSVLink
+        data={selectedDataToExport3}
+        filename="table_value.csv"
+        className="group [transform:translateZ(0)] px-6 py-3 rounded-lg overflow-hidden bg-gray-300 relative before:absolute before:bg-[#339966] before:top-1/2 before:left-1/2 before:h-2 before:w-9 before:-translate-y-1/2 before:-translate-x-1/2 before:rounded-sm  before:opacity-0 hover:before:scale-[6] hover:before:opacity-100 before:transition before:ease-in-out before:duration-500"
+      >
+        <span className="relative z-0 text-black transition duration-500 ease-in-out group-hover:text-gray-200">
+          Export Selected as CSV
+        </span>
+      </CSVLink>
+    );
+  };
+
+  const columns4 = [
+    {
+      name: 'Sno',
+      // selector: 'id', // Adjust this to your data structure
+      cell: (row) => {
+        const index = tabledata2.indexOf(row);
+        return (currentPage4 - 1) * rowsPerPage4 + index + 1;
+      },
+      sortable: true,
+      width: '70px',
+    },
+    {
+      name: 'Branch',
+      selector: 'branch_name',
+      sortable: true,
+      width: '230px',
+    },
+    {
+      name: 'Patient ID',
+      selector: 'patient_id',
+      sortable: true,
+      width: '170px',
+    },
+    {
+      name: 'Patient Name',
+      selector: 'patient_name',
+      sortable: true,
+      width: '270px',
+    },
+    {
+      name: 'Service Name',
+      selector: 'service_name',
+      sortable: true,
+      width: '500px',
+    },
+    {
+      name: 'Service Date',
+      selector: 'service_date',
+      sortable: true,
+      width: '150px',
+      cell: (row) => {
+        // Parse the date string into a Date object
+        const originalDate = new Date(row.service_date);
+
+        // Format the date as "YYYY-MM-DD"
+        const formattedDate = originalDate.toISOString().split('T')[0];
+
+        return formattedDate;
+      },
+    },
+    {
+      name: 'Invoice Number',
+      selector: 'invoice_no',
+      sortable: true,
+      width: '150px',
+    },
+    {
+      name: 'Amount',
+      selector: 'amount',
+      sortable: true,
+      cell: (row) => (
+        <span>
+          {new Intl.NumberFormat('en-IN', {
+            style: 'currency',
+            currency: 'INR',
+          })
+            .format(row.amount)
+            .split('.')[0]}
+        </span>
+      ),
+    },
+  ];
 
   //-----chart onclick table header and body color--------------------------------------------------- 
   const tableCustomStyles1 = {
@@ -1419,39 +1411,39 @@ const columns4 = [
     }
   }
 
-// export button 4 handling
+  // export button 4 handling
 
-const handleExportSelected4 = () => {
-  const selectedDataToExport4 = selectedRows4.map((row, index) => ({
-    Sno: index + 1,
-    Branch: row.branch_name,
-    'Patient ID': row.patient_id,
-    'Patient Name': row.patient_name,
-    'Service Name': row.service_name,
-    'Service Date': row.service_date,
-    'Invoice No': row.invoice_no,
-    Amount: new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-    })
-      .format(row.amount)
-      .split('.')[0],
-  }));
+  const handleExportSelected4 = () => {
+    const selectedDataToExport4 = selectedRows4.map((row, index) => ({
+      Sno: index + 1,
+      Branch: row.branch_name,
+      'Patient ID': row.patient_id,
+      'Patient Name': row.patient_name,
+      'Service Name': row.service_name,
+      'Service Date': row.service_date,
+      'Invoice No': row.invoice_no,
+      Amount: new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+      })
+        .format(row.amount)
+        .split('.')[0],
+    }));
 
-  selectedDataToExport4.sort((a, b) => a.Sno - b.Sno);
+    selectedDataToExport4.sort((a, b) => a.Sno - b.Sno);
 
-  return (
-    <CSVLink
-      data={selectedDataToExport4}
-      filename="table_value.csv"
-      className="group [transform:translateZ(0)] px-6 py-3 rounded-lg overflow-hidden bg-gray-300 relative before:absolute before:bg-[#339966] before:top-1/2 before:left-1/2 before:h-2 before:w-9 before:-translate-y-1/2 before:-translate-x-1/2 before:rounded-sm  before:opacity-0 hover:before:scale-[6] hover:before:opacity-100 before:transition before:ease-in-out before:duration-500"
-    >
-      <span className="relative z-0 text-black transition duration-500 ease-in-out group-hover:text-gray-200">
-        Export Selected as CSV
-      </span>
-    </CSVLink>
-  );
-};
+    return (
+      <CSVLink
+        data={selectedDataToExport4}
+        filename="table_value.csv"
+        className="group [transform:translateZ(0)] px-6 py-3 rounded-lg overflow-hidden bg-gray-300 relative before:absolute before:bg-[#339966] before:top-1/2 before:left-1/2 before:h-2 before:w-9 before:-translate-y-1/2 before:-translate-x-1/2 before:rounded-sm  before:opacity-0 hover:before:scale-[6] hover:before:opacity-100 before:transition before:ease-in-out before:duration-500"
+      >
+        <span className="relative z-0 text-black transition duration-500 ease-in-out group-hover:text-gray-200">
+          Export Selected as CSV
+        </span>
+      </CSVLink>
+    );
+  };
   //------ If Data  False, then Table is Displayed without service Data --------------------------------------------   
   if (firstbar == false) {
 
@@ -1462,33 +1454,34 @@ const handleExportSelected4 = () => {
           // Step 2: Conditional rendering for the loading animation
           <div>Loading...</div>
         ) : (
-        <DataTable
-          columns={columns1}
-          data={tabledata1}
-          pagination
-          paginationPerPage={rowsPerPage1}
-          paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
-          paginationTotalRows={tabledata1.length}
-          selectableRows
-          onSelectedRowsChange={(selectedRows) => {
-            setSelectedRows1(selectedRows.selectedRows);
-          }}
-          onTableUpdate={({ page, rowsPerPage }) => {
-            setCurrentPage1(page);
-            setRowsPerPage1(rowsPerPage);
-          }}
-          striped
-          customStyles={tableCustomStyles}
-          expandableRows
-          expandOnRowClicked
-          onRowExpandToggled={({ data }) => {
-            // Use map to loop through tabledata1 and call toggleDetails for each item
-            tabledata1.forEach((item) => {
-              toggleDetails(item.id);
-            });
-          }}
-          expandableRowsComponent={({ data }) => (
-            <div >
+          <DataTable
+            columns={columns1}
+            data={tabledata1}
+            pagination
+            paginationPerPage={rowsPerPage1}
+            paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
+            paginationTotalRows={tabledata1.length}
+            paginationDefaultPage={currentPage1}
+            selectableRows
+            onSelectedRowsChange={(selectedRows) => {
+              setSelectedRows1(selectedRows.selectedRows);
+            }}
+            onTableUpdate={({ page, rowsPerPage }) => {
+              setCurrentPage1(page);
+              setRowsPerPage1(rowsPerPage);
+            }}
+            striped
+            customStyles={tableCustomStyles}
+            expandableRows
+            expandOnRowClicked
+            onRowExpandToggled={() => {
+              // Use map to loop through tabledata1 and call toggleDetails for each item
+              tabledata1.forEach((item) => {
+                toggleDetails(item.id);
+              });
+            }}
+            expandableRowsComponent={({ data }) => (
+              <div >
 
                 <div>
                   <div className="grid grid-cols-5 gap-3 p-2 border-b border-gray-100 bg-[#5383a1]">
@@ -1517,9 +1510,9 @@ const handleExportSelected4 = () => {
                       );
                     })}
                 </div>
-            </div>
-          )}
-        />
+              </div>
+            )}
+          />
         )
       );
       //----- Onclick to fetch Completed Data-------------------------------------------------------------
@@ -1529,24 +1522,25 @@ const handleExportSelected4 = () => {
           // Step 2: Conditional rendering for the loading animation
           <div>Loading...</div>
         ) : (
-        <DataTable
-          columns={columns2}
-          data={tabledata3}
-          pagination
-          paginationPerPage={rowsPerPage2}
-          paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
-          paginationTotalRows={tabledata3.length}
-          selectableRows
-          onSelectedRowsChange={(selectedRows) => {
-            setSelectedRows2(selectedRows.selectedRows);
-          }}
-          onTableUpdate={({ page, rowsPerPage }) => {
-            setCurrentPage2(page);
-            setRowsPerPage2(rowsPerPage);
-          }}
-          striped
-          customStyles={tableCustomStyles}
-        />
+          <DataTable
+            columns={columns2}
+            data={tabledata3}
+            pagination
+            paginationPerPage={rowsPerPage2}
+            paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
+            paginationTotalRows={tabledata3.length}
+            paginationDefaultPage={currentPage2}
+            selectableRows
+            onSelectedRowsChange={(selectedRows) => {
+              setSelectedRows2(selectedRows.selectedRows);
+            }}
+            onTableUpdate={({ page, rowsPerPage }) => {
+              setCurrentPage2(page);
+              setRowsPerPage2(rowsPerPage);
+            }}
+            striped
+            customStyles={tableCustomStyles}
+          />
         )
       );
     }
@@ -1557,24 +1551,25 @@ const handleExportSelected4 = () => {
           // Step 2: Conditional rendering for the loading animation
           <div>Loading...</div>
         ) : (
-        <DataTable
-          columns={columns3}
-          data={tabledata4}
-          pagination
-          paginationPerPage={rowsPerPage3}
-          paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
-          paginationTotalRows={tabledata4.length}
-          selectableRows
-          onSelectedRowsChange={(selectedRows) => {
-            setSelectedRows3(selectedRows.selectedRows);
-          }}
-          onTableUpdate={({ page, rowsPerPage }) => {
-            setCurrentPage3(page);
-            setRowsPerPage3(rowsPerPage);
-          }}
-          striped
-          customStyles={tableCustomStyles}
-        />
+          <DataTable
+            columns={columns3}
+            data={tabledata4}
+            pagination
+            paginationPerPage={rowsPerPage3}
+            paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
+            paginationTotalRows={tabledata4.length}
+            paginationDefaultPage={currentPage3}
+            selectableRows
+            onSelectedRowsChange={(selectedRows) => {
+              setSelectedRows3(selectedRows.selectedRows);
+            }}
+            onTableUpdate={({ page, rowsPerPage }) => {
+              setCurrentPage3(page);
+              setRowsPerPage3(rowsPerPage);
+            }}
+            striped
+            customStyles={tableCustomStyles}
+          />
         )
       );
     }
@@ -1644,24 +1639,25 @@ const handleExportSelected4 = () => {
           // Step 2: Conditional rendering for the loading animation
           <div>Loading...</div>
         ) : (
-        <DataTable
-          columns={columns4}
-          data={tabledata2}
-          pagination
-          paginationPerPage={rowsPerPage4}
-          paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
-          paginationTotalRows={tabledata2.length}
-          selectableRows
-          onSelectedRowsChange={(selectedRows) => {
-            setSelectedRows4(selectedRows.selectedRows);
-          }}
-          onTableUpdate={({ page, rowsPerPage }) => {
-            setCurrentPage4(page);
-            setRowsPerPage4(rowsPerPage);
-          }}
-          striped
-          customStyles={tableCustomStyles1}
-        />
+          <DataTable
+            columns={columns4}
+            data={tabledata2}
+            pagination
+            paginationPerPage={rowsPerPage4}
+            paginationRowsPerPageOptions={[5, 10, 20, 50, 100, 250, 500]}
+            paginationTotalRows={tabledata2.length}
+            paginationDefaultPage={currentPage4}
+            selectableRows
+            onSelectedRowsChange={(selectedRows) => {
+              setSelectedRows4(selectedRows.selectedRows);
+            }}
+            onTableUpdate={({ page, rowsPerPage }) => {
+              setCurrentPage4(page);
+              setRowsPerPage4(rowsPerPage);
+            }}
+            striped
+            customStyles={tableCustomStyles1}
+          />
         )
 
       );
@@ -1883,9 +1879,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center">
                           <h2 className="font-sans font-semibold text-gray-600 uppercase">Revenue</h2>
                           <p className="font-sans text-2xl font-semibold">  {isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(Revenue).split('.')[0])}  <span className="text-green-500"></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(Revenue).split('.')[0])}  <span className="text-green-500"></span></p>
                         </div>
                       </div>
                     </div>
@@ -1906,9 +1902,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center">
                           <h2 className="font-sans font-bold text-gray-600 uppercase">Gross</h2>
                           <p className="text-2xl font-bold font-Roboto"> {isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(gross).split('.')[0])}    <span className="text-green-500"><i className="fas fa-caret-up"></i></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(gross).split('.')[0])}    <span className="text-green-500"><i className="fas fa-caret-up"></i></span></p>
                         </div>
                       </div>
                     </div>
@@ -1929,9 +1925,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center">
                           <h2 className="font-sans font-bold text-gray-600 uppercase">Tax</h2>
                           <p className="text-2xl font-bold font-Roboto"> {isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(tax).split('.')[0])}<span className="text-green-500"><i className="fas fa-caret-up"></i></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(tax).split('.')[0])}<span className="text-green-500"><i className="fas fa-caret-up"></i></span></p>
                         </div>
                       </div>
                     </div>
@@ -1954,9 +1950,9 @@ const handleExportSelected4 = () => {
 
                           <h2 style={cursorstyle} onClick={completedschedules} className="font-bold text-gray-600 uppercase">Completed Schedules</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (completedschedulesamount)}</p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (completedschedulesamount)}</p>
                         </div>
                       </div>
                     </div>
@@ -1976,9 +1972,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center">
                           <h2 style={cursorstyle} onClick={viewreceipts} className="font-bold text-gray-600 uppercase">Invoices+Completed Schedules</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (estimatedamount)}</p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (estimatedamount)}</p>
                         </div>
                       </div>
                     </div>
@@ -1998,9 +1994,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center" >
                           <h2 className="font-bold text-gray-600 uppercase" style={cursorstyle} onClick={pendingSchedules}>Pending Schedules</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (pendingscheduleamount)} <span className="text-red-500"><i className="fas fa-caret-up"></i></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (pendingscheduleamount)} <span className="text-red-500"><i className="fas fa-caret-up"></i></span></p>
                         </div>
                       </div>
                     </div>
@@ -2020,9 +2016,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center">
                           <h2 className="font-bold text-gray-600 uppercase">Invoices</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (invoiceamount)} <span className="text-green-500"><i className="fas fa-caret-up"></i></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (invoiceamount)} <span className="text-green-500"><i className="fas fa-caret-up"></i></span></p>
                         </div>
                       </div>
                     </div>
@@ -2042,9 +2038,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center">
                           <h2 style={cursorstyle} onClick={viewreceipts} className="font-bold text-gray-600 uppercase">Receipts</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (receiptamount)}<span className="text-pink-500"><i className="fas fa-exchange-alt"></i></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (receiptamount)}<span className="text-pink-500"><i className="fas fa-exchange-alt"></i></span></p>
                         </div>
                       </div>
                     </div>
@@ -2062,9 +2058,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center">
                           <h2 style={cursorstyle} onClick={pendingreceipts} className="font-bold text-gray-600 uppercase">Remaining</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (remainingamount)} <span className="text-yellow-600"><i className="fas fa-caret-up"></i></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (remainingamount)} <span className="text-yellow-600"><i className="fas fa-caret-up"></i></span></p>
                         </div>
                       </div>
                     </div>
@@ -2088,9 +2084,9 @@ const handleExportSelected4 = () => {
 
                           <h2 style={cursorstyle} onClick={completedschedules} className="font-bold text-gray-600 uppercase">Completed Schedules</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (completedserviceschedulesamount)}</p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (completedserviceschedulesamount)}</p>
                         </div>
                       </div>
                     </div>
@@ -2110,9 +2106,9 @@ const handleExportSelected4 = () => {
                         <div className="flex-1 text-right md:text-center" >
                           <h2 className="font-bold text-gray-600 uppercase" style={cursorstyle} onClick={completedschedules}>Pending Schedules</h2>
                           <p className="text-2xl font-bold font-Roboto">{isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (pendingservicescheduleamount)} <span className="text-red-500"><i className="fas fa-caret-up"></i></span></p>
+                            // Step 2: Conditional rendering for the loading animation
+                            <div>Loading...</div>
+                          ) : (pendingservicescheduleamount)} <span className="text-red-500"><i className="fas fa-caret-up"></i></span></p>
                         </div>
                       </div>
                     </div>
@@ -2129,10 +2125,10 @@ const handleExportSelected4 = () => {
 
               <div className="grid shadow-sm col-2 h-96 ">
                 <div className="relative overflow-x-auto bg-white border-2 border-solid rounded shadow-md sm:rounded-lg">
-                {isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (<CanvasJSStockChart containerProps={containerProps} options={stock_chart_options} />)}
+                  {isLoading ? (
+                    // Step 2: Conditional rendering for the loading animation
+                    <div>Loading...</div>
+                  ) : (<CanvasJSStockChart containerProps={containerProps} options={stock_chart_options} />)}
                 </div>
 
               </div>
@@ -2142,10 +2138,10 @@ const handleExportSelected4 = () => {
             <div className="grid grid-cols-1 shadow-sm container-fluid lg:grid-cols-2">
               <div className="relative overflow-x-auto text-xl font-semibold rounded-lg shadow-md sm:rounded-lg">
 
-              {isLoading ? (
-          // Step 2: Conditional rendering for the loading animation
-          <div>Loading...</div>
-        ) : (<CanvasJSChart options={category_chart_options} />)}
+                {isLoading ? (
+                  // Step 2: Conditional rendering for the loading animation
+                  <div>Loading...</div>
+                ) : (<CanvasJSChart options={category_chart_options} />)}
 
               </div>
               <div style={chartContainerStyle} className='text-xl font-semibold'>
@@ -2159,7 +2155,7 @@ const handleExportSelected4 = () => {
             <br></br>
             {/* List of Data */}
             <div className="grid  shadow-sm col-1 ">
-            <div className='w-50 m-5'>{selectedRows1.length > 0 && handleExportSelected1() || selectedRows2.length > 0 && handleExportSelected2() || selectedRows3.length > 0 && handleExportSelected3() || selectedRows4.length > 0 && handleExportSelected4()}</div>
+              <div className='w-50 m-5'>{selectedRows1.length > 0 && handleExportSelected1() || selectedRows2.length > 0 && handleExportSelected2() || selectedRows3.length > 0 && handleExportSelected3() || selectedRows4.length > 0 && handleExportSelected4()}</div>
               <div className="rounded shadow-md sm:rounded-lg ">
 
                 {tableContent}
